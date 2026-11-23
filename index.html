@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>QwikPrint Franchise Orders</title>
+<style>
+/* :root{--bg:#f4f9f5;--sf:#fff;--tx:#17251c;--mu:#5f7367;--ln:#dbe8df;--ac:#1f8a4c;--dk:#0f5132;--tint:#e8f5ec;--bad:#c0392b;--ok:#1f8a4c;--warn:#a86400;color-scheme:light}
+*{box-sizing:border-box}html,body{margin:0}
+body{background:var(--bg);color:var(--tx);font:15px/1.55 "Segoe UI",system-ui,-apple-system,sans-serif;padding:env(safe-area-inset-top,0) 0 env(safe-area-inset-bottom,0)}
+h1,h2,h3{margin:0 0 .5rem;font-weight:700;letter-spacing:-.01em}
+h1{font-size:1.35rem}h2{font-size:1.15rem;color:var(--dk)}h3{font-size:1rem;color:var(--dk)}
+.wrap{max-width:1100px;margin:0 auto;padding:16px}
+.bar{display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:16px;padding:14px 18px;border-radius:12px;background:linear-gradient(120deg,var(--dk),var(--ac));color:#fff}
+.bar h1{margin:0;color:#fff}
+.bar span{display:block;font-size:.85rem;opacity:.9}
+.bar .brand{display:flex;gap:12px;align-items:center}
+.logo{display:inline-grid;place-items:center;width:40px;height:40px;border-radius:10px;background:#fff;color:var(--ac)!important;font-weight:800;font-size:1.3rem;opacity:1!important}
+.bar .logo{display:grid;font-size:1.3rem}
+.bar button{background:#fff;color:var(--dk);border-color:#fff;font-weight:600}
+.card{background:var(--sf);border:1px solid var(--ln);border-radius:12px;padding:18px;margin-bottom:16px}
+.tabs{display:flex;gap:4px;flex-wrap:wrap;margin-bottom:16px;border-bottom:1px solid var(--ln)}
+button,input,select{font:inherit;color:var(--tx)}
+button{background:var(--sf);border:1px solid var(--ln);border-radius:8px;padding:8px 14px;cursor:pointer}
+button:hover{border-color:var(--ac)}
+.tabs button{border:0;border-bottom:3px solid transparent;border-radius:0;background:none;padding:10px 16px;color:var(--mu);font-weight:600}
+.tabs button.on{border-bottom-color:var(--ac);color:var(--ac)}
+button.p{background:var(--ac);color:#fff;border-color:var(--ac);font-weight:600}
+button.p:hover{background:var(--dk)}
+:focus-visible{outline:2px solid var(--ac);outline-offset:2px}
+input,select,textarea{background:#fff;border:1px solid var(--ln);border-radius:8px;padding:9px 11px;width:100%;color:var(--tx)}
+input:focus,select:focus{border-color:var(--ac)}
+input[type=checkbox]{accent-color:var(--ac);width:18px!important;height:18px}
+label{display:block;font-size:.85rem;color:var(--mu);font-weight:600}
+.g{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.sc{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:.88rem}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--ln);white-space:nowrap}
+th{background:var(--tint);color:var(--dk);font-weight:700}
+tr:hover td{background:#f8fcf9}
+.st{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-bottom:16px}
+.st div{background:var(--sf);border:1px solid var(--ln);border-left:5px solid var(--ac);border-radius:12px;padding:14px}
+.st b{display:block;font-size:1.5rem;color:var(--dk)}
+.pill{display:inline-block;padding:3px 10px;border-radius:999px;font-size:.8rem;font-weight:600}
+.pill.ok{background:var(--tint);color:var(--ok)}.pill.warn{background:#fdf1dc;color:var(--warn)}.pill.bad{background:#fbe4e1;color:var(--bad)}
+.bad{color:var(--bad);font-weight:600}.ok{color:var(--ok);font-weight:600}.warn{color:var(--warn);font-weight:600}.mu{color:var(--mu)}
+.msg{color:var(--bad);min-height:1.3em;margin:6px 0 0}
+.login{max-width:380px;margin:10vh auto;border-top:6px solid var(--ac)}
+.login .brand{display:flex;gap:12px;align-items:center;margin-bottom:6px}
+.login .brand h1{margin:0;color:var(--dk)}
+textarea{height:120px;font-family:monospace;font-size:.8rem}
+.auth{display:grid;grid-template-columns:1.1fr 1fr;max-width:900px;min-height:540px;margin:5vh auto;background:#fff;border:1px solid var(--ln);border-radius:18px;overflow:hidden}
+.auth .hero{position:relative;overflow:hidden;background:var(--dk);color:#fff;padding:36px;display:flex;flex-direction:column;justify-content:center;gap:18px}
+.auth .hero .brand{display:flex;gap:12px;align-items:center}
+.auth .hero .logo{display:grid;place-items:center;width:44px;height:44px;border-radius:12px;background:#fff;color:var(--ac);font-weight:800;font-size:1.4rem}
+.auth .hero h1{margin:0;color:#fff;font-size:1.5rem}
+.auth .hero h2{color:#fff;font-size:1.6rem;line-height:1.25;margin:0;position:relative;z-index:1}
+.auth .hero ul{list-style:none;margin:0;padding:0;display:grid;gap:10px;position:relative;z-index:1}
+.auth .hero li{padding-left:28px;position:relative;color:#d7efe0}
+.auth .hero li::before{content:"";position:absolute;left:0;top:4px;width:16px;height:16px;border-radius:50%;background:var(--ac);box-shadow:inset 0 0 0 4px var(--dk),0 0 0 2px #6fcf97}
+.auth .ring{position:absolute;border-radius:50%;border:30px solid rgba(255,255,255,.06)}
+.auth .r1{width:260px;height:260px;right:-90px;bottom:-90px}
+.auth .r2{width:150px;height:150px;right:70px;bottom:-60px;border-width:20px}
+.auth .form{padding:40px 36px;display:flex;flex-direction:column;justify-content:center;gap:12px}
+.auth .form h2{font-size:1.5rem;margin:0}
+.auth .form p{margin:0}
+.auth .pw{position:relative;margin-top:4px}
+.auth .pw input{padding-right:64px}
+.auth .pw button{position:absolute;right:6px;top:50%;transform:translateY(-50%);border:0;background:none;color:var(--ac);font-weight:600;padding:6px 8px}
+.auth .form label input{margin-top:4px}
+.auth button.wide{width:100%;padding:11px;font-size:1rem}
+.auth .small{font-size:.85rem;text-align:center}
+@media (max-width:720px){.auth{grid-template-columns:1fr;margin:2vh auto}.auth .hero{padding:24px}.auth .hero h2{font-size:1.25rem}.auth .form{padding:26px 22px}}
+.pay{display:flex;gap:4px;margin-top:5px}
+.pay input{width:120px;padding:5px 7px}
+.pay button{padding:5px 10px}
+td select,td input[type=date]{width:auto;padding:6px 8px}
+td input[data-n]{width:auto} */
+
+
+:root {
+    --bg: #f4f9f5;
+    --sf: #fff;
+    --tx: #17251c;
+    --mu: #5f7367;
+    --ln: #dbe8df;
+    --ac: #1f8a4c;
+    --dk: #0f5132;
+    --tint: #e8f5ec;
+    --bad: #c0392b;
+    --ok: #1f8a4c;
+    --warn: #a86400;
+    color-scheme: light;
+}
+
+/* GLOBAL RESET */
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    min-height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    background: var(--bg);
+    color: var(--tx);
+    font: 15px/1.55 "Segoe UI", system-ui, -apple-system, sans-serif;
+    padding: env(safe-area-inset-top, 0) 0 env(safe-area-inset-bottom, 0);
+}
+
+#app {
+    width: 100%;
+    min-height: 100vh;
+}
+
+/* HEADINGS */
+h1, h2, h3 {
+    margin: 0 0 .5rem;
+    font-weight: 700;
+    letter-spacing: -.01em;
+}
+
+h1 {
+    font-size: 1.35rem;
+}
+
+h2 {
+    font-size: 1.15rem;
+    color: var(--dk);
+}
+
+h3 {
+    font-size: 1rem;
+    color: var(--dk);
+}
+
+/* MAIN CONTAINER - FULL SCREEN */
+.wrap {
+    width: 100%;
+    max-width: none;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px 24px;
+}
+
+/* TOP HEADER */
+.bar {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-bottom: 16px;
+    padding: 14px 20px;
+    border-radius: 12px;
+    background: linear-gradient(120deg, var(--dk), var(--ac));
+    color: #fff;
+}
+
+.bar h1 {
+    margin: 0;
+    color: #fff;
+}
+
+.bar span {
+    display: block;
+    font-size: .85rem;
+    opacity: .9;
+}
+
+.bar .brand {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.logo {
+    display: inline-grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: #fff;
+    color: var(--ac) !important;
+    font-weight: 800;
+    font-size: 1.3rem;
+    opacity: 1 !important;
+}
+
+.bar .logo {
+    display: grid;
+    font-size: 1.3rem;
+}
+
+.bar button {
+    background: #fff;
+    color: var(--dk);
+    border-color: #fff;
+    font-weight: 600;
+}
+
+/* CARDS */
+.card {
+    width: 100%;
+    background: var(--sf);
+    border: 1px solid var(--ln);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 16px;
+}
+
+/* TABS */
+.tabs {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--ln);
+}
+
+button, input, select {
+    font: inherit;
+    color: var(--tx);
+}
+
+button {
+    background: var(--sf);
+    border: 1px solid var(--ln);
+    border-radius: 8px;
+    padding: 8px 14px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+button:hover {
+    border-color: var(--ac);
+}
+
+.tabs button {
+    border: 0;
+    border-bottom: 3px solid transparent;
+    border-radius: 0;
+    background: none;
+    padding: 10px 16px;
+    color: var(--mu);
+    font-weight: 600;
+}
+
+.tabs button.on {
+    border-bottom-color: var(--ac);
+    color: var(--ac);
+}
+
+button.p {
+    background: var(--ac);
+    color: #fff;
+    border-color: var(--ac);
+    font-weight: 600;
+}
+
+button.p:hover {
+    background: var(--dk);
+}
+
+/* INPUTS */
+input, select, textarea {
+    background: #fff;
+    border: 1px solid var(--ln);
+    border-radius: 8px;
+    padding: 9px 11px;
+    width: 100%;
+    color: var(--tx);
+}
+
+input:focus, select:focus, textarea:focus {
+    border-color: var(--ac);
+    outline: none;
+}
+
+:focus-visible {
+    outline: 2px solid var(--ac);
+    outline-offset: 2px;
+}
+
+input[type=checkbox] {
+    accent-color: var(--ac);
+    width: 18px !important;
+    height: 18px;
+}
+
+/* LABELS */
+label {
+    display: block;
+    font-size: .85rem;
+    color: var(--mu);
+    font-weight: 600;
+}
+
+/* GRID LAYOUT */
+.g {
+    display: grid;
+    gap: 14px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+/* TABLES */
+.sc {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    min-width: 900px;
+    font-size: .88rem;
+}
+
+th, td {
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--ln);
+    white-space: nowrap;
+}
+
+th {
+    background: var(--tint);
+    color: var(--dk);
+    font-weight: 700;
+}
+
+tr:hover td {
+    background: #f8fcf9;
+}
+
+td select,
+td input[type=date] {
+    width: auto;
+    padding: 6px 8px;
+}
+
+td input[data-n] {
+    width: auto;
+}
+
+/* STATISTICS */
+.st {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.st div {
+    background: var(--sf);
+    border: 1px solid var(--ln);
+    border-left: 5px solid var(--ac);
+    border-radius: 12px;
+    padding: 16px;
+}
+
+.st b {
+    display: block;
+    font-size: 1.5rem;
+    color: var(--dk);
+}
+
+/* STATUS PILLS */
+.pill {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: .8rem;
+    font-weight: 600;
+}
+
+.pill.ok {
+    background: var(--tint);
+    color: var(--ok);
+}
+
+.pill.warn {
+    background: #fdf1dc;
+    color: var(--warn);
+}
+
+.pill.bad {
+    background: #fbe4e1;
+    color: var(--bad);
+}
+
+/* STATUS TEXT */
+.bad {
+    color: var(--bad);
+    font-weight: 600;
+}
+
+.ok {
+    color: var(--ok);
+    font-weight: 600;
+}
+
+.warn {
+    color: var(--warn);
+    font-weight: 600;
+}
+
+.mu {
+    color: var(--mu);
+}
+
+/* MESSAGES */
+.msg {
+    color: var(--bad);
+    min-height: 1.3em;
+    margin: 6px 0 0;
+}
+
+.small {
+    font-size: .85rem;
+}
+
+/* LOGIN PAGE - FULL SCREEN */
+.auth {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    width: 100%;
+    max-width: none;
+    min-height: 100vh;
+    margin: 0;
+    background: #fff;
+    border: none;
+    border-radius: 0;
+    overflow: hidden;
+}
+
+.auth .hero {
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+    background: var(--dk);
+    color: #fff;
+    padding: 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+}
+
+.auth .hero .brand {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.auth .hero .logo {
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: #fff;
+    color: var(--ac);
+    font-weight: 800;
+    font-size: 1.4rem;
+}
+
+.auth .hero h1 {
+    margin: 0;
+    color: #fff;
+}
+
+.auth .hero h2 {
+    color: #fff;
+    font-size: 2rem;
+    line-height: 1.25;
+    margin: 0;
+    position: relative;
+    z-index: 1;
+    max-width: 600px;
+}
+
+.auth .hero ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 14px;
+    position: relative;
+    z-index: 1;
+}
+
+.auth .hero li {
+    padding-left: 28px;
+    position: relative;
+    color: #d7efe0;
+}
+
+.auth .hero li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 4px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--ac);
+    box-shadow:
+        inset 0 0 0 4px var(--dk),
+        0 0 0 2px #6fcf97;
+}
+
+/* LOGIN DECORATION */
+.auth .ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 30px solid rgba(255,255,255,.06);
+    pointer-events: none;
+}
+
+.auth .r1 {
+    width: 300px;
+    height: 300px;
+    right: -90px;
+    bottom: -90px;
+}
+
+.auth .r2 {
+    width: 170px;
+    height: 170px;
+    right: 70px;
+    bottom: -60px;
+    border-width: 20px;
+}
+
+/* LOGIN FORM */
+.auth .form {
+    min-height: 100vh;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 16px;
+    max-width: 650px;
+    width: 100%;
+    margin: auto;
+}
+
+.auth .form h2 {
+    font-size: 1.7rem;
+    margin: 0;
+}
+
+.auth .form p {
+    margin: 0;
+}
+
+.auth .pw {
+    position: relative;
+    margin-top: 4px;
+}
+
+.auth .pw input {
+    padding-right: 64px;
+}
+
+.auth .pw button {
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 0;
+    background: none;
+    color: var(--ac);
+    font-weight: 600;
+    padding: 6px 8px;
+}
+
+.auth .form label input {
+    margin-top: 4px;
+}
+
+.auth button.wide {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+}
+
+.auth .small {
+    font-size: .85rem;
+    text-align: center;
+}
+
+/* PAYMENT INPUT */
+.pay {
+    display: flex;
+    gap: 4px;
+    margin-top: 5px;
+}
+
+.pay input {
+    width: 120px;
+    min-width: 100px;
+    padding: 5px 7px;
+}
+
+.pay button {
+    padding: 5px 10px;
+}
+
+/* LOGIN SMALL SCREEN */
+@media (max-width: 900px) {
+    .auth .hero {
+        padding: 32px;
+    }
+
+    .auth .form {
+        padding: 32px;
+    }
+
+    .auth .hero h2 {
+        font-size: 1.5rem;
+    }
+}
+
+/* MOBILE RESPONSIVE */
+@media (max-width: 720px) {
+    .wrap {
+        padding: 10px;
+    }
+
+    .auth {
+        grid-template-columns: 1fr;
+        min-height: 100vh;
+    }
+
+    .auth .hero {
+        min-height: auto;
+        padding: 28px 22px;
+    }
+
+    .auth .hero h2 {
+        font-size: 1.3rem;
+    }
+
+    .auth .form {
+        min-height: auto;
+        padding: 32px 22px;
+    }
+
+    .bar {
+        padding: 12px;
+    }
+
+    .card {
+        padding: 14px;
+    }
+
+    .g {
+        grid-template-columns: 1fr;
+    }
+
+    .st {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .tabs button {
+        padding: 9px 11px;
+    }
+
+    table {
+        min-width: 900px;
+    }
+}
+
+/* SMALL MOBILE */
+@media (max-width: 400px) {
+    .st {
+        grid-template-columns: 1fr;
+    }
+
+    .auth .form {
+        padding: 24px 18px;
+    }
+
+    .auth .hero {
+        padding: 24px 18px;
+    }
+}
+
+
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+<body>
+<div class="wrap" id="app"></div>
+<script>
+// 1) Paste your Supabase project values here (Project Settings > API). The anon key is safe to expose because the database rules protect the data.
+const SUPABASE_URL="https://njxrqypmxvhinnvoaelp.supabase.co";
+const SUPABASE_KEY="sb_publishable_NqCfZgUIZJtuijbgsX9veQ_P4qi2k58";
+
+const PRICE={MINI:{pre:115000,post:0,total:165000},PRO:{pre:250000,post:50000,total:350000},Lite:{pre:150000,post:50000,total:250000}};
+const ADV=50000,STAT=["Order received","Shipped","Installed"],INC=["Credited","Pending"];
+const sb=supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+let me=null,O=[],U=[],tab="orders",msg="",rt="model",fM="",fMo="",fU="";
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const inr=n=>"₹"+Number(n||0).toLocaleString("en-IN");
+const today=()=>new Date().toISOString().slice(0,10);
+const addD=(d,n)=>{const x=new Date(d+"T00:00:00");x.setDate(x.getDate()+n);return x.toISOString().slice(0,10)};
+const fmt=d=>d?new Date(d+"T00:00:00").toLocaleDateString("en-IN",{day:"2-digit",month:"short",year:"numeric"}):"";
+const dn=(n,e)=>{if(n&&!String(n).includes("@"))return n;const l=String(n||e||"").split("@")[0];return l.replace(/[._-]+/g," ").replace(/\b\w/g,c=>c.toUpperCase()).trim()||"User"};
+const who=o=>dn(o.profiles?.name,o.profiles?.email);
+const bal=o=>o.total-o.paid;
+const opts=(L,v)=>L.map(x=>`<option ${x===v?"selected":""}>${x}</option>`).join("");
+async function boot(){
+ const {data:{session}}=await sb.auth.getSession();
+ if(!session){me=null;return render()}
+ const {data:p}=await sb.from("profiles").select("*").eq("id",session.user.id).single();
+ if(!p||!p.active){await sb.auth.signOut();me=null;msg="This account is switched off. Ask your admin.";return render()}
+ me=p;await load();render();
+}
+async function load(){
+ const r=await sb.from("orders").select("*, profiles(name,email)").order("id",{ascending:false});
+ O=r.data||[];
+ if(me.role==="admin"){U=(await sb.from("profiles").select("*").order("created_at")).data||[]}
+}
+function render(){
+ const a=$("#app");
+ if(!me){a.innerHTML=`<div class="auth">
+ <div class="hero"><div class="brand"><span class="logo">Q</span><h1>QwikPrint</h1></div>
+  <h2>Track every franchise order from booking to installation.</h2>
+  <ul><li>₹50,000 advance recorded on booking day</li><li>Payments added as they arrive</li><li>Status and incentive tracked per order</li></ul>
+  <span class="ring r1"></span><span class="ring r2"></span></div>
+ <div class="form"><h2>Welcome back</h2><p class="mu">Sign in to your QwikPrint account.</p>
+  <label>Email<input id="lu" type="email" placeholder="name@company.com" autocomplete="username"></label>
+  <label>Password<div class="pw"><input id="lp" type="password" placeholder="Enter your password" autocomplete="current-password"><button type="button" id="sp">Show</button></div></label>
+  <p class="msg">${esc(msg)}</p><button class="p wide" id="lg">Sign in</button>
+  <p class="mu small">Need access? Ask your admin to add you.</p></div></div>`;
+  $("#lg").onclick=login;$("#lp").onkeydown=$("#lu").onkeydown=e=>{if(e.key==="Enter")login()};$("#sp").onclick=()=>{const t=$("#lp").type==="password";$("#lp").type=t?"text":"password";$("#sp").textContent=t?"Hide":"Show"};return}
+ const adm=me.role==="admin";
+ const tabs=[["orders","Orders"],["new","New order"]].concat(adm?[["reports","Reports"],["users","Users"]]:[]);
+ a.innerHTML=`<div class="bar"><div class="brand"><span class="logo">Q</span><div><h1>QwikPrint</h1><span>Franchise orders</span></div></div><div><span>${esc(dn(me.name,me.email))}</span><span>${adm?"Admin, sees all orders":"User, sees own orders"}</span></div><button id="lo">Sign out</button></div>
+ <div class="tabs">${tabs.map(t=>`<button data-t="${t[0]}" class="${tab===t[0]?"on":""}">${t[1]}</button>`).join("")}</div><div id="v"></div>`;
+ $("#lo").onclick=async()=>{await sb.auth.signOut();me=null;msg="";render()};
+ a.querySelectorAll("[data-t]").forEach(b=>b.onclick=()=>{tab=b.dataset.t;msg="";render()});
+ ({orders:vOrders,new:vNew,reports:vReports,users:vUsers})[tab]();
+}
+async function login(){
+ const {error}=await sb.auth.signInWithPassword({email:$("#lu").value.trim(),password:$("#lp").value});
+ if(error){msg="Wrong email or password.";return render()}
+ msg="";tab="orders";boot();
+}
+async function upd(id,patch){
+ const {error}=await sb.from("orders").update(patch).eq("id",id);
+ if(error)alert("Could not save: "+error.message);
+ await load();vOrders();
+}
+function vOrders(){
+ const adm=me.role==="admin";
+ $("#v").innerHTML=`<div class="card"><h2>${adm?"All orders":"My orders"} (${O.length})</h2>
+ ${O.length?`<div class="sc"><table><tr><th>ID</th><th>Franchise location</th><th>Model</th>${adm?"<th>By</th>":""}<th>Booked</th><th>Install date</th><th>Total</th><th>Payment paid</th><th>Balance due</th><th>Status</th><th>Incentive</th></tr>
+ ${O.map(o=>`<tr><td>${o.id}</td><td>${esc(o.franchise)}<br><span class="mu">${esc(o.owner)}, ${esc(o.phone)}${o.city?", "+esc(o.city):""}</span></td><td>${o.model}</td>${adm?`<td>${esc(who(o))}</td>`:""}<td>${fmt(o.booked)}</td>
+ <td><input type="date" data-o="${o.id}" data-f="install_date" value="${o.install_date||""}" aria-label="Install date order ${o.id}"></td>
+ <td>${inr(o.total)}</td><td class="ok">${inr(o.paid)}</td>
+ <td><b class="${bal(o)>0?"warn":"ok"}">${inr(bal(o))}</b>${bal(o)>0?`<div class="pay"><input type="number" data-p="${o.id}" placeholder="Amount received" aria-label="Amount received order ${o.id}"><button data-a="${o.id}">Add</button></div>`:""}</td>
+ <td><select data-o="${o.id}" data-f="status" aria-label="Status order ${o.id}">${opts(STAT,o.status)}</select></td>
+ <td>${adm?`<select data-o="${o.id}" data-f="incentive" aria-label="Incentive order ${o.id}">${opts(INC,o.incentive)}</select>`:`<span class="pill ${o.incentive==="Credited"?"ok":"warn"}">${o.incentive}</span>`}</td></tr>`).join("")}</table></div>
+ <p class="mu small">To record a payment, type the amount received under Balance due and click Add. It is added to Payment paid. Use a minus amount to correct a mistake.</p>`:`<p class="mu">No orders yet. Open New order and record the first ₹50,000 booking.</p>`}</div>`;
+ document.querySelectorAll("[data-f]").forEach(c=>c.onchange=()=>upd(c.dataset.o,{[c.dataset.f]:c.value||null}));
+ document.querySelectorAll("[data-a]").forEach(b=>b.onclick=()=>{
+  const o=O.find(x=>x.id==b.dataset.a),amt=+document.querySelector(`[data-p="${o.id}"]`).value;
+  if(!amt)return alert("Enter the amount received.");
+  const np=o.paid+amt;
+  if(np<0||np>o.total)return alert("That would make Payment paid "+inr(np)+". It must stay between ₹0 and "+inr(o.total)+".");
+  upd(o.id,{paid:np});
+ });
+}
+function vNew(){
+ $("#v").innerHTML=`<div class="card"><h2>New order</h2><p class="mu">Saving this order records the ₹50,000 advance as received.</p>
+ <div class="g"><label>Franchise location<input id="f"></label><label>Owner name<input id="ow"></label><label>Phone<input id="ph" inputmode="tel"></label><label>City<input id="ct"></label>
+ <label>Model<select id="md"><option>MINI</option><option>PRO</option><option>Lite</option><option>Custom</option></select></label><label>Booking date<input id="bd" type="date" value="${today()}"></label>
+ <label>Total price<input id="tt" type="number"></label><label>Install date<input id="idt" type="date" value="${addD(today(),25)}"></label></div>
+ <label style="margin-top:10px">Notes<input id="nt"></label><p class="msg" id="er"></p><button class="p" id="sv">Save order</button></div>`;
+ let touched=false;
+ const sync=()=>{const m=$("#md").value,c=m==="Custom";$("#tt").readOnly=!c;if(!c)$("#tt").value=PRICE[m].total};
+ $("#md").oninput=sync;sync();
+ $("#idt").oninput=()=>{touched=true};
+ $("#bd").oninput=()=>{if(!touched&&$("#bd").value)$("#idt").value=addD($("#bd").value,25)};
+ $("#sv").onclick=async()=>{
+  const g=i=>$("#"+i).value.trim(),er=t=>$("#er").textContent=t,m=g("md"),fx=PRICE[m];
+  const total=fx?fx.total:+g("tt");
+  if(!g("f")||!g("ow"))return er("Enter the franchise location and owner name.");
+  if(!g("bd"))return er("Choose the booking date.");
+  if(!fx&&!(total>ADV))return er("For a Custom order, enter a total price above ₹50,000.");
+  const o={franchise:g("f"),owner:g("ow"),phone:g("ph"),city:g("ct"),model:m,total,pre:fx?fx.pre:total-ADV,post:fx?fx.post:0,booked:g("bd"),install_date:g("idt")||null,notes:g("nt")};
+  const {error}=await sb.from("orders").insert(o);
+  if(error)return er("Could not save: "+error.message);
+  await load();tab="orders";render();
+ };
+}
+const HD=h=>[h,"Orders","Order value","Payment paid","Balance due","Incentive credited","Incentive pending"];
+function grp(L,kf,lab,cmp){
+ const m={};
+ L.forEach(o=>{const k=kf(o),r=m[k]=m[k]||{n:0,t:0,p:0,c:0,q:0};r.n++;r.t+=o.total;r.p+=o.paid;o.incentive==="Credited"?r.c++:r.q++});
+ const rows=Object.keys(m).sort(cmp||((a,b)=>lab(a).localeCompare(lab(b)))).map(k=>[lab(k),m[k].n,m[k].t,m[k].p,m[k].t-m[k].p,m[k].c,m[k].q]);
+ return rows.length?rows.concat([rows.reduce((a,r)=>a.map((v,i)=>i?v+r[i]:v),["Total",0,0,0,0,0,0])]):rows;
+}
+function vReports(){
+ const nm={};O.forEach(o=>nm[o.created_by]=who(o));
+ const months=[...new Set(O.map(o=>o.booked.slice(0,7)))].sort();
+ const mlab=k=>new Date(k+"-01T00:00:00").toLocaleDateString("en-IN",{month:"short",year:"numeric"});
+ const F=O.filter(o=>(!fM||o.model===fM)&&(!fMo||o.booked.slice(0,7)===fMo)&&(!fU||o.created_by===fU));
+ const T={model:["By model",HD("Model"),grp(F,o=>o.model,k=>k)],month:["By month",HD("Month"),grp(F,o=>o.booked.slice(0,7),mlab,(a,b)=>a<b?-1:1)],user:["By user",HD("User"),grp(F,o=>o.created_by,k=>nm[k])]};
+ const tv=F.reduce((s,o)=>s+o.total,0),tp=F.reduce((s,o)=>s+o.paid,0);
+ const cur=T[rt],rows=cur[2];
+ $("#v").innerHTML=`<div class="st"><div><b>${F.length}</b><span class="mu">Orders</span></div><div><b>${inr(tv)}</b><span class="mu">Order value</span></div><div><b>${inr(tp)}</b><span class="mu">Payment paid</span></div><div><b>${inr(tv-tp)}</b><span class="mu">Balance due</span></div></div>
+ <div class="card"><div class="g">
+ <label>Model<select id="fm"><option value="">All models</option>${["MINI","PRO","Lite","Custom"].map(x=>`<option ${x===fM?"selected":""}>${x}</option>`).join("")}</select></label>
+ <label>Month<select id="fmo"><option value="">All months</option>${months.map(k=>`<option value="${k}" ${k===fMo?"selected":""}>${mlab(k)}</option>`).join("")}</select></label>
+ <label>User<select id="fu"><option value="">All users</option>${U.map(u=>`<option value="${u.id}" ${u.id===fU?"selected":""}>${esc(dn(u.name,u.email))}</option>`).join("")}</select></label></div>
+ <div style="margin-top:12px"><button class="p" id="ex">Export to Excel (all tabs)</button></div></div>
+ <div class="tabs">${Object.keys(T).map(k=>`<button data-r="${k}" class="${rt===k?"on":""}">${T[k][0]}</button>`).join("")}</div>
+ <div class="card"><h3>${cur[0]}</h3>${rows.length?`<div class="sc"><table><tr>${cur[1].map(h=>`<th>${h}</th>`).join("")}</tr>
+ ${rows.map((r,i)=>`<tr ${i===rows.length-1?'style="font-weight:700"':""}>${r.map((v,j)=>`<td>${j>1&&j<5?inr(v):esc(v)}</td>`).join("")}</tr>`).join("")}</table></div>`:`<p class="mu">No orders match these filters.</p>`}</div>`;
+ $("#fm").onchange=e=>{fM=e.target.value;vReports()};
+ $("#fmo").onchange=e=>{fMo=e.target.value;vReports()};
+ $("#fu").onchange=e=>{fU=e.target.value;vReports()};
+ document.querySelectorAll("[data-r]").forEach(b=>b.onclick=()=>{rt=b.dataset.r;vReports()});
+ $("#ex").onclick=()=>{
+  if(typeof XLSX==="undefined")return alert("The Excel library did not load. Check your internet connection and reload.");
+  const wb=XLSX.utils.book_new();
+  Object.keys(T).forEach(k=>XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet([T[k][1]].concat(T[k][2])),T[k][0]));
+  const ol=[["ID","Franchise location","Owner","Phone","City","Model","User","Booked","Install date","Total","Payment paid","Balance due","Status","Incentive"]].concat(F.map(o=>[o.id,o.franchise,o.owner,o.phone,o.city,o.model,who(o),o.booked,o.install_date||"",o.total,o.paid,bal(o),o.status,o.incentive]));
+  XLSX.utils.book_append_sheet(wb,XLSX.utils.aoa_to_sheet(ol),"All orders");
+  XLSX.writeFile(wb,"qwikprint-report-"+today()+".xlsx");
+ };
+}
+function vUsers(){
+ $("#v").innerHTML=`<div class="card"><h2>Users</h2><div class="sc"><table><tr><th>Name</th><th>Email</th><th>Role</th><th>Orders</th><th>Status</th><th></th></tr>
+ ${U.map(u=>`<tr><td><input data-n="${u.id}" value="${esc(dn(u.name,u.email))}" style="min-width:150px" aria-label="Name"></td><td>${esc(u.email)}</td><td>${u.role}</td><td>${O.filter(o=>o.created_by===u.id).length}</td><td class="${u.active?"ok":"bad"}">${u.active?"Active":"Switched off"}</td><td>${u.id===me.id?"":`<button data-d="${u.id}" data-a="${u.active}">${u.active?"Switch off":"Switch on"}</button>`}</td></tr>`).join("")}</table></div>
+ <p class="mu small">Change a name in the box and click outside it to save.</p></div>
+ <div class="card"><h3>Add a user</h3><div class="g"><label>Name<input id="nn"></label><label>Email<input id="nu" type="email"></label><label>Password (6+ characters)<input id="np"></label></div><p class="msg" id="er">${esc(msg)}</p><button class="p" id="au">Add user</button></div>`;
+ document.querySelectorAll("[data-n]").forEach(i=>i.onchange=async()=>{
+  const n=i.value.trim();if(!n)return;
+  const {error}=await sb.from("profiles").update({name:n}).eq("id",i.dataset.n);
+  if(error)alert("Could not save: "+error.message);
+  await load();vUsers();render_hdr();
+ });
+ document.querySelectorAll("[data-d]").forEach(b=>b.onclick=async()=>{
+  await sb.from("profiles").update({active:b.dataset.a!=="true"}).eq("id",b.dataset.d);await load();vUsers()});
+ $("#au").onclick=async()=>{
+  const n=$("#nn").value.trim(),e=$("#nu").value.trim(),p=$("#np").value;
+  if(!n||!e||p.length<6){msg="Enter a name, an email and a password of at least 6 characters.";return vUsers()}
+  const c2=supabase.createClient(SUPABASE_URL,SUPABASE_KEY,{auth:{persistSession:false,autoRefreshToken:false,detectSessionInUrl:false}});
+  const {error}=await c2.auth.signUp({email:e,password:p,options:{data:{name:n}}});
+  msg=error?error.message:"";await load();vUsers();
+ };
+}
+function render_hdr(){const m=U.find(u=>u.id===me.id);if(m){me=m;const s=document.querySelector(".bar > div:nth-child(2) span");if(s)s.textContent=dn(me.name,me.email)}}
+boot();
+</script>
+</body>
+</html>
